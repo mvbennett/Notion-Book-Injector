@@ -23,7 +23,10 @@ const createResults = (success) => {
       author: result['authors'],
       pageCount: result['pageCount'],
       publishedDate: result.publishedDate,
-      cover: cover
+      cover: cover,
+      // these two for display purposes only
+      description: result.description,
+      previewLink: result.previewLink
     };
     // console.log(resultObj);
     results.push(resultObj)
