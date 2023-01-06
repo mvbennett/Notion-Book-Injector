@@ -8,15 +8,22 @@ const search = (title) => {
 };
 
 const createResults = (success) => {
-  // console.log(success.items);
+  // console.log(success.items[0]);
   let results = []
   success.items.forEach(element => {
     const result = element.volumeInfo;
     // console.log(result['title']);
+    const covers = result.imageLinks;
+    let cover = '';
+    if (covers !== undefined) {
+      cover = covers.thumbnail;
+    }
     const resultObj = {
       title: result['title'],
       author: result['authors'],
-      pageCount: result['pageCount']
+      pageCount: result['pageCount'],
+      publishedDate: result.publishedDate,
+      cover: cover
     };
     // console.log(resultObj);
     results.push(resultObj)
