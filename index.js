@@ -49,3 +49,7 @@ const getBook = async (title) => {
 
 let pachinko = await search('pachinko');
 console.log(pachinko);
+
+
+const root = document.getElementById('root');
+window.onload(await search('pachinko'));
