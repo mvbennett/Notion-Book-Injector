@@ -52,4 +52,4 @@ console.log(pachinko);
 
 
 const root = document.getElementById('root');
-window.onload(await search('pachinko'));
+window.onload(root.insertAdjacentHTML('afterbegin', '<h1>Hi Mike</h1>'));
