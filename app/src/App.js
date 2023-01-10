@@ -6,32 +6,31 @@ import { useState } from 'react';
 
 function App() {
   const [results, setResults] = useState();
-  const search = (book) => {
-    fetch(`http://localhost:4000/search/${book}`)
+  const [query, setQuery] = useState();
+  const search = async (book) => {
+    fetch(`http://localhost:5000/test/${book}`)
     .then(response => response.json())
     .then(data => setResults(data));
   }
-  search('pachinko');
+  // search('pachinko');
   // console.log(results);
-  const parsedResults = [];
-  if (typeof results === 'object') {
-    results.forEach(element => {
-      parsedResults.push(
-        {
-          title: element.volumeInfo.title
-        }
-      );
-    });
-  }
-  console.log(parsedResults);
+  // const parsedResults = [];
+  // if (typeof results === 'object') {
+  //   results.forEach(element => {
+  //     parsedResults.push(
+  //       {
+  //         title: element.volumeInfo.title
+  //       }
+  //     );
+  //   });
+  // }
+  // console.log(parsedResults);
   return (
     <div className="App">
       <h1>Notion Book Injector</h1>
-      <Search />
-      <Results />
-      {parsedResults === undefined ? <div /> : parsedResults.forEach(element => {
-        return <div key={element.title}><h2>{element.title}</h2></div>
-      })}
+      <Search search={search} setQuery={setQuery} />
+      <Results results={results}/>
+      <h2>{query}</h2>
     </div>
   );
 }
