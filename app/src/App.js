@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function App() {
   const [results, setResults] = useState([]);
-  const [query, setQuery] = useState();
+  // const [query, setQuery] = useState();
   const search = async (book) => {
     const response = await fetch(`http://localhost:5000/search/${book}`);
     const data = await response.json();
@@ -18,7 +18,8 @@ function App() {
   return (
     <div className="App">
       <h1>Notion Book Injector</h1>
-      <Search search={search} setResults={setResults} setQuery={setQuery} />
+      <Search search={search} setResults={setResults} />
+      <h2>Here are your results:</h2>
       <Results results={results}/>
       {results.forEach(result => {
         return <h2>{result.title}</h2>

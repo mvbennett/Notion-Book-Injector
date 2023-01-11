@@ -3,8 +3,7 @@ import ResultCard from "./ResultCard";
 
 const Results = ({results}) => {
   return(
-    <div>
-      <h2>Here are your results:</h2>
+    <div className="results">
       {results.map(result => {
         return <ResultCard result={result} key={result.title} />
       })}
