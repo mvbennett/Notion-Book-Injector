@@ -5,32 +5,24 @@ import Results from './components/Results';
 import { useState } from 'react';
 
 function App() {
-  const [results, setResults] = useState();
+  const [results, setResults] = useState([]);
   const [query, setQuery] = useState();
   const search = async (book) => {
-    fetch(`http://localhost:5000/test/${book}`)
-    .then(response => response.json())
-    .then(data => setResults(data));
+    const response = await fetch(`http://localhost:5000/search/${book}`);
+    const data = await response.json();
+    return data;
   }
-  // search('pachinko');
-  // console.log(results);
-  // const parsedResults = [];
-  // if (typeof results === 'object') {
-  //   results.forEach(element => {
-  //     parsedResults.push(
-  //       {
-  //         title: element.volumeInfo.title
-  //       }
-  //     );
-  //   });
-  // }
-  // console.log(parsedResults);
+  console.log(results);
+  results.forEach(result => console.log(result.title));
+  // results === undefined ? console.log('no results yet') : console.log(results);
   return (
     <div className="App">
       <h1>Notion Book Injector</h1>
-      <Search search={search} setQuery={setQuery} />
+      <Search search={search} setResults={setResults} setQuery={setQuery} />
       <Results results={results}/>
-      <h2>{query}</h2>
+      {results.forEach(result => {
+        return <h2>{result.title}</h2>
+      })}
     </div>
   );
 }
