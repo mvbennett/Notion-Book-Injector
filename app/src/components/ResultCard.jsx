@@ -8,8 +8,14 @@ const ResultCard = ({result}) => {
     str += header.join(',') + '\r\n';
 
     let line = '';
+    let i = 0;
     header.forEach((field) => {
-      line += `"${obj[field]}"`+','
+      i++;
+      if (i === header.length) {
+        line += `"${obj[field]}"`
+      } else {
+        line += `"${obj[field]}",`
+      }
     });
     str += line + '\r\n'
 
@@ -20,10 +26,10 @@ const ResultCard = ({result}) => {
   // console.log(result.description);
   const description = result.description.length > 240 ? `${result.description.substring(0, 240)}...` : result.description;
   const downloadInfo = {
-    title: result.title,
-    author: authorStr,
-    image: image,
-    pages: result.pageCount
+    Title: result.title,
+    Author: authorStr,
+    Image: image,
+    Pages: result.pageCount
   }
   const handleDownload = () => {
     const csv = convertToCSV(downloadInfo);
@@ -32,7 +38,7 @@ const ResultCard = ({result}) => {
 
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'data.csv');
+    link.setAttribute('download', `${downloadInfo.Title}.csv`);
     document.body.appendChild(link);
     link.click();
   }
