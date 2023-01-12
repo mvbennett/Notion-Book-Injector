@@ -8,7 +8,7 @@ function App() {
   const [results, setResults] = useState([]);
   // const [query, setQuery] = useState();
   const search = async (book) => {
-    const response = await fetch(`http://localhost:5000/search/${book}`);
+    const response = await fetch(`http://localhost:4000/search/${book}`);
     const data = await response.json();
     return data;
   }
